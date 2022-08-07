@@ -2,14 +2,14 @@ from django import forms
 from .models import Product, Category
 
 
-class ProductForm(Forms.ModelsForm):
+class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
         fields = '__all__'
 
     def _inti_(self, *args, **kwargs):
-        super()._inti_( *args, **kwargs):
+        super()._inti_( *args, **kwargs)
         categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
