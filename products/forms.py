@@ -1,0 +1,18 @@
+from django import forms
+from .models import Product, Category
+
+
+class ProductForm(Forms.ModelsForm):
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def _inti_(self, *args, **kwargs):
+        super()._inti_( *args, **kwargs):
+        categories = Category.objects.all()
+        friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
+
+        self.fields['category'].choices = friendly_names
+        for friendly_name, field in self.fields.item():
+            field.widget.attrs['class'] = 'border-black rounded-0'
