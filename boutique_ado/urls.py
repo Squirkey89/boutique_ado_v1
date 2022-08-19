@@ -32,4 +32,3 @@ urlpatterns = [
 
 handler404 = 'boutique_ado.views.handler404'
 
-
